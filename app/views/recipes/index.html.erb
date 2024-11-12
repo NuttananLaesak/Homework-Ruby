@@ -1,0 +1,36 @@
+<center>
+    <h1>Recipe</h1>
+    <p>Find me in app/views/recipe/index.html.erb</p>
+    <%= link_to 'Go to New',new_recipe_path, class: 'btn btn-primary' %>
+    <br>
+    <table>
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>Catagory</th>
+            <th>Create at</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= @recipes.each do |recipe| %>
+            <tr>
+                <td><%=recipe.id%></td>
+                <td><%=recipe.name%></td>
+                <td><%=recipe.catagory.name%></td>
+                <td><%= recipe.created_at.strftime('%d/%m/%Y') %></td>
+                <td><td>
+                <td><%= link_to "Edit",edit_recipe_path(recipe.id)%></td>
+                <td><td>
+                <td><%= button_to "Delete",recipe_path(recipe), method: :delete %></td>
+            </tr>
+            <% end %>
+            </tbody>
+    </table>
+    <br>
+      <%= form_with url: import_recipes_path, local: true do |f|%>
+    <%= f.file_field :file %>
+    <%= f.submit %>
+    <% end %>
+</center>

@@ -1,0 +1,30 @@
+<%= form_with model: recipe do |r| %>
+  <%= r.label :name %>
+  <%= r.text_field :name %>
+  <br>
+
+  <%= r.label :description %>
+  <%= r.text_area :description %>
+  <br>
+
+  <%= r.label :instruction %>
+  <%= r.text_area :instruction %>
+  <br>
+
+  <%= r.label :catagory_id %>
+  <%= r.collection_select :catagory_id, Catagory.all, :id, :name, prompt: "Select a category" %>
+  <br><br>
+
+  <%= r.label :ingredients %> 
+  <%= r.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |b| %>
+    <div>
+      <%= b.check_box %>  
+      <%= b.label %>      
+    </div>
+  <% end %>
+  <br><br>
+
+  <%= r.submit %>
+<% end %>
+
+
