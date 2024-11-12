@@ -10,10 +10,6 @@ class Recipe < ApplicationRecord
     xlsx.each_row_streaming(offset: 1) do |r|
       recipe = self.new(name: r[0].value, description: r[1].value, instruction: r[2].value, catagory_id: r[3].value)
 
-      puts "===================="
-      puts r[0].inspect, r[1].inspect, r[2].inspect, r[3].inspect
-      puts "===================="
-
       recipe.save
     end
 
