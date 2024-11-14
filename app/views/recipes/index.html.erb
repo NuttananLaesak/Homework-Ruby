@@ -1,36 +1,35 @@
-<center>
-    <h1>Recipe</h1>
-    <p>Find me in app/views/recipe/index.html.erb</p>
-    <%= link_to 'Go to New',new_recipe_path, class: 'btn btn-primary' %>
+<h1>Recipe</h1>
     <br>
-    <table>
+    <%= link_to 'Go to New', new_recipe_path, class: 'btn btn-primary' %>
+    <br><br><br>
+      <%= form_with url: import_recipes_path, local: true do |f|%>
+    <%= f.file_field :file %>
+    <%= f.submit %>
+    <% end %>
+    <br>
+
+<% if can? :update, @recipes %>
+ <table style="border-collapse: collapse; width: 100%;">
         <thead>
             <tr>
-            <th>ID</th>
-            <th>name</th>
-            <th>Catagory</th>
-            <th>Create at</th>
-            <th></th>
+                <th style="border: 1px solid black; padding: 8px;">ID</th>
+                <th style="border: 1px solid black; padding: 8px;">Name</th>
+                <th style="border: 1px solid black; padding: 8px;">Category</th>
+                <th style="border: 1px solid black; padding: 8px;">Created at</th>
             </tr>
         </thead>
-        <tbody>
-            <%= @recipes.each do |recipe| %>
+        <%= @recipes.each do |recipe| %>
             <tr>
-                <td><%=recipe.id%></td>
-                <td><%=recipe.name%></td>
-                <td><%=recipe.catagory.name%></td>
-                <td><%= recipe.created_at.strftime('%d/%m/%Y') %></td>
+                <td style="border: 1px solid black; padding: 8px;"><%=recipe.id%></td>
+                <td style="border: 1px solid black; padding: 8px;"><%=recipe.name%></td>
+                <td style="border: 1px solid black; padding: 8px;"><%=recipe.catagory.name%></td>
+                <td style="border: 1px solid black; padding: 8px;"><%= recipe.created_at.strftime('%d/%m/%Y') %></td>
                 <td><td>
-                <td><%= link_to "Edit",edit_recipe_path(recipe.id)%></td>
+                <td ><%= link_to "Edit",edit_recipe_path(recipe.id)%></td>
                 <td><td>
                 <td><%= button_to "Delete",recipe_path(recipe), method: :delete %></td>
             </tr>
             <% end %>
             </tbody>
-    </table>
-    <br>
-      <%= form_with url: import_recipes_path, local: true do |f|%>
-    <%= f.file_field :file %>
-    <%= f.submit %>
-    <% end %>
-</center>
+<% end %>
+

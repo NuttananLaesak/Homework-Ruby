@@ -47,6 +47,20 @@ gem "bootsnap", require: false
 
 gem "roo"
 
+gem "rolify"
+
+gem 'cancancan'
+
+gem 'rails_admin', '~> 3.0'
+
+gem 'rspec-rails', '~> 7.0.0'
+
+gem 'capybara'
+
+gem 'factory_bot_rails'
+
+gem 'simplecov', require: false, group: :test
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -66,3 +80,6 @@ group :development do
   # gem "spring"
 end
 
+
+gem "devise", "~> 4.9"
+gem "sassc-rails"
